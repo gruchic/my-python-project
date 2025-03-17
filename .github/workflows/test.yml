@@ -1,0 +1,29 @@
+name: Run Python Tests
+
+# Event: Trigger when code is pushed to the main branch
+on:
+  push:
+    branches:
+      - main
+
+# Jobs to run
+jobs:
+  test:
+    # Use a cloud runner with Ubuntu
+    runs-on: ubuntu-latest
+
+    # Steps to execute
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3  # Pre-built action
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      # Step 3: Run tests
+      - name: Run tests
+        run: python test_math.py
